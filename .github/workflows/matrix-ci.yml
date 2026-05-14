@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -13,17 +14,15 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout code
+
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configure Git Line Endings
-        run: git config --global core.autocrlf false
-
-      - name: Set up JDK 11
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'
 
       - name: Build and Test
-        run: mvn clean package -Dcheckstyle.skip=true
+        run: mvn clean test
