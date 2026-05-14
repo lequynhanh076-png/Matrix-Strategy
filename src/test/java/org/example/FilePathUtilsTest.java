@@ -5,22 +5,13 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 public class FilePathUtilsTest {
-
     @Test
-    void testPathWithMatrixFailure() {
+    void testPathCompatibility() {
         String folder = "data";
         String file = "config.txt";
+
         String expected = "data" + File.separator + "config.txt";
 
-        assertEquals(expected, FilePathUtils.joinPathWrong(folder, file));
-    }
-
-    @Test
-    void testPathWithMatrixSuccess() {
-        String folder = "data";
-        String file = "config.txt";
-        String expected = "data" + File.separator + "config.txt";
-
-        assertEquals(expected, FilePathUtils.joinPathCorrect(folder, file));
+        assertEquals(expected, FilePathUtils.getStandardPath(folder, file));
     }
 }
